@@ -1,0 +1,92 @@
+/* ================= COMMON (har page me same) ================= */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{min-height:100dvh;overflow-x:hidden;font-family:var(--body);color:var(--ink);background:var(--bg);background-attachment:fixed;animation:pageIn .9s ease both}
+body.leaving{opacity:0;transform:scale(1.04);transition:opacity .6s ease,transform .6s ease}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
+.hidden{display:none!important}
+.stage{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:28px 20px;text-align:center}
+
+/* floating hearts / stars etc */
+.floaters{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.floaters span{position:absolute;bottom:-12%;opacity:0;animation:floatUp linear infinite;will-change:transform}
+@keyframes floatUp{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.9}50%{transform:translate(24px,-62vh) rotate(18deg)}100%{transform:translate(-24px,-128vh) rotate(-18deg);opacity:0}}
+
+/* tap sparkles + rain */
+.burst{position:fixed;pointer-events:none;z-index:999;font-size:22px;animation:burstOut 1s ease-out forwards}
+@keyframes burstOut{from{transform:translate(-50%,-50%) scale(.4);opacity:1}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.3);opacity:0}}
+.rain{position:fixed;top:-8%;z-index:900;pointer-events:none;animation:rainDown linear forwards}
+@keyframes rainDown{to{transform:translateY(112dvh) rotate(360deg)}}
+
+/* teddy */
+.teddy{width:100%}
+.teddy-svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 12px 14px rgba(0,0,0,.22))}
+.t-head{transform-origin:100px 146px;animation:headTilt 4.5s ease-in-out infinite}
+.t-eye{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+@keyframes headTilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.bobber{animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.sitter{animation:sitBob 3s ease-in-out infinite}
+@keyframes sitBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+/* overlay + reveal */
+.overlay{position:fixed;inset:0;z-index:50;display:flex;padding:18px;overflow-y:auto;background:var(--ov,rgba(40,10,40,.55));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s}
+.overlay.show{opacity:1;visibility:visible;transition:opacity .5s ease}
+.pop-in{animation:popIn .7s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes popIn{from{opacity:0;transform:scale(.3) translateY(24px)}to{opacity:1;transform:none}}
+
+/* buttons */
+.btn{font-family:inherit;border:0;cursor:pointer;font-weight:700;border-radius:999px;position:relative;overflow:hidden;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,background .25s}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.btn .shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);transform:translateX(-120%);animation:shine 3s ease-in-out infinite}
+@keyframes shine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+/* ================= PAGE 1 : Pink Hearts ================= */
+:root{
+  --bg:radial-gradient(90% 60% at 20% 0%,#fff0f6 0%,transparent 60%),linear-gradient(165deg,#ffe0ec 0%,#ffbcd6 50%,#ff97c1 100%);
+  --ink:#7a1d4a;
+  --body:'Baloo 2',system-ui,sans-serif;
+  --hot:#ff3d85;
+  --tw:clamp(120px,min(44vw,26dvh),190px);
+}
+
+.hello{font-size:1.15rem;font-weight:700;color:#e0327a;animation:dropIn .9s .2s cubic-bezier(.34,1.56,.64,1) both}
+.title{font-family:'Pacifico',cursive;font-weight:400;font-size:clamp(1.7rem,6.6vw,2.9rem);line-height:1.35;color:#b0125d;text-shadow:0 3px 0 rgba(255,255,255,.75);max-width:14em;animation:dropIn 1s .45s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes dropIn{from{opacity:0;transform:translateY(-40px) scale(.9)}to{opacity:1;transform:none}}
+
+.hero{position:relative;width:min(62vw,30dvh,250px);animation:dropIn 1s .7s cubic-bezier(.34,1.56,.64,1) both;cursor:pointer}
+.hero.squish{animation:squish .9s ease}
+@keyframes squish{0%,100%{transform:scale(1)}25%{transform:scale(1.18,.84)}50%{transform:scale(.88,1.14)}75%{transform:scale(1.08,.94)}}
+.bubble{position:absolute;left:50%;top:-6px;transform:translate(-50%,-100%) scale(0);transform-origin:50% 100%;background:#fff;color:#b0125d;font-weight:700;font-size:.95rem;line-height:1.3;padding:9px 16px;border-radius:18px;width:max-content;max-width:78vw;box-shadow:0 8px 20px rgba(176,18,93,.25);transition:transform .45s cubic-bezier(.34,1.56,.64,1);z-index:3}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-8px;width:16px;height:16px;background:#fff;transform:translateX(-50%) rotate(45deg);border-radius:3px}
+.bubble.show{transform:translate(-50%,-100%) scale(1)}
+
+.btn-col{display:flex;flex-direction:column;align-items:center;gap:16px;animation:dropIn 1s .95s cubic-bezier(.34,1.56,.64,1) both}
+.btn-main{padding:16px 36px;font-size:1.3rem;color:#fff;background:linear-gradient(120deg,#ff3d85,#ff86b6,#ff3d85);background-size:220% 100%;box-shadow:0 10px 0 #c21f66,0 18px 30px rgba(194,31,102,.4);animation:glow 2.2s ease-in-out infinite,slide 4s linear infinite}
+.btn-main .ico{display:inline-block;animation:beat 1.2s ease-in-out infinite}
+.btn-main:hover{transform:translateY(-3px) scale(1.04)}
+.btn-main:active{transform:translateY(6px);box-shadow:0 4px 0 #c21f66,0 8px 16px rgba(194,31,102,.4)}
+@keyframes glow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.12)}}
+@keyframes slide{to{background-position:220% 0}}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.3) rotate(-8deg)}}
+
+.mini-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn-soft{padding:10px 20px;font-size:1rem;color:#b0125d;background:rgba(255,255,255,.7);border:2px solid #fff;box-shadow:0 6px 16px rgba(176,18,93,.18);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.btn-soft:hover{transform:translateY(-4px) rotate(-3deg);background:#fff}
+.btn-soft:active{transform:scale(.92)}
+
+/* note box */
+.note-wrap{position:relative;margin:auto;padding-top:calc(var(--tw)*1.25 - 26px);width:min(92vw,430px)}
+.overlay.show .note-wrap{animation:boxPop 1s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes boxPop{0%{opacity:0;transform:translateY(120px) scale(.3) rotate(-10deg)}60%{opacity:1}100%{opacity:1;transform:none}}
+.note-teddy{position:absolute;top:0;left:0;right:0;margin:0 auto;width:var(--tw);z-index:2}
+.note-box{position:relative;background:#fffdf8;border:3px solid #fff;outline:3px dashed #ff9ec4;outline-offset:-13px;border-radius:28px;padding:38px 30px 30px;box-shadow:0 25px 60px rgba(176,18,93,.35);text-align:center}
+.note-title{font-family:'Pacifico',cursive;font-size:1.55rem;color:#e0327a;margin-bottom:10px}
+.note-text{font-size:1.18rem;line-height:1.65;color:#6b2350;white-space:pre-wrap;min-height:5em;text-align:left}
+.slot{margin-top:20px;display:flex;justify-content:center}
+.slot .btn-main{font-size:1.15rem;padding:13px 30px}

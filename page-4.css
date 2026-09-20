@@ -1,0 +1,104 @@
+/* ================= COMMON (har page me same) ================= */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{min-height:100dvh;overflow-x:hidden;font-family:var(--body);color:var(--ink);background:var(--bg);background-attachment:fixed;animation:pageIn .9s ease both}
+body.leaving{opacity:0;transform:scale(1.04);transition:opacity .6s ease,transform .6s ease}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
+.hidden{display:none!important}
+.stage{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:28px 20px;text-align:center}
+
+/* floating hearts / stars etc */
+.floaters{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.floaters span{position:absolute;bottom:-12%;opacity:0;animation:floatUp linear infinite;will-change:transform}
+@keyframes floatUp{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.9}50%{transform:translate(24px,-62vh) rotate(18deg)}100%{transform:translate(-24px,-128vh) rotate(-18deg);opacity:0}}
+
+/* tap sparkles + rain */
+.burst{position:fixed;pointer-events:none;z-index:999;font-size:22px;animation:burstOut 1s ease-out forwards}
+@keyframes burstOut{from{transform:translate(-50%,-50%) scale(.4);opacity:1}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.3);opacity:0}}
+.rain{position:fixed;top:-8%;z-index:900;pointer-events:none;animation:rainDown linear forwards}
+@keyframes rainDown{to{transform:translateY(112dvh) rotate(360deg)}}
+
+/* teddy */
+.teddy{width:100%}
+.teddy-svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 12px 14px rgba(0,0,0,.22))}
+.t-head{transform-origin:100px 146px;animation:headTilt 4.5s ease-in-out infinite}
+.t-eye{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+@keyframes headTilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.bobber{animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.sitter{animation:sitBob 3s ease-in-out infinite}
+@keyframes sitBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+/* overlay + reveal */
+.overlay{position:fixed;inset:0;z-index:50;display:flex;padding:18px;overflow-y:auto;background:var(--ov,rgba(40,10,40,.55));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s}
+.overlay.show{opacity:1;visibility:visible;transition:opacity .5s ease}
+.pop-in{animation:popIn .7s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes popIn{from{opacity:0;transform:scale(.3) translateY(24px)}to{opacity:1;transform:none}}
+
+/* buttons */
+.btn{font-family:inherit;border:0;cursor:pointer;font-weight:700;border-radius:999px;position:relative;overflow:hidden;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,background .25s}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.btn .shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);transform:translateX(-120%);animation:shine 3s ease-in-out infinite}
+@keyframes shine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+/* ================= PAGE 4 : Proposal Night ================= */
+:root{
+  --bg:radial-gradient(120% 80% at 50% 0%,#6b1f5c 0%,#33103d 50%,#160822 100%);
+  --ink:#ffeef3;
+  --body:'Poppins',system-ui,sans-serif;
+  --rose:#ff5f9a;
+  --gold:#ffd27a;
+  --blush:#ffc6d6;
+  --ov:rgba(18,6,30,.68);
+  --tw:clamp(120px,min(44vw,26dvh),190px);
+}
+
+.spot{position:fixed;left:50%;top:52%;width:120vmin;height:120vmin;margin:-60vmin 0 0 -60vmin;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(255,120,170,.42) 0,rgba(255,120,170,.12) 35%,transparent 62%);animation:spotBreath 4s ease-in-out infinite}
+@keyframes spotBreath{0%,100%{transform:scale(.92);opacity:.8}50%{transform:scale(1.08);opacity:1}}
+
+.hello{font-family:'Satisfy',cursive;font-size:1.7rem;color:var(--blush);animation:slideUp 1s .2s cubic-bezier(.2,.9,.3,1.2) both}
+.title{font-family:'Satisfy',cursive;font-weight:400;font-size:clamp(2.2rem,8.5vw,3.8rem);line-height:1.15;color:var(--gold);text-shadow:0 0 30px rgba(255,210,122,.5);max-width:11em;animation:slideUp 1s .45s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes slideUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+.hero{width:min(66vw,32dvh,270px);animation:slideUp 1.1s .7s cubic-bezier(.2,.9,.3,1.2) both}
+
+.btn-rose{padding:17px 38px;font-size:1.2rem;font-weight:600;color:#fff;background:linear-gradient(135deg,#ff5f9a,#ff8a6b);box-shadow:0 0 0 0 rgba(255,95,154,.6),0 14px 30px rgba(255,95,154,.4);animation:slideUp 1s .95s cubic-bezier(.2,.9,.3,1.2) both,rosePulse 2s 2s ease-out infinite}
+.btn-rose .ring{display:inline-block;animation:ringSpin 3s ease-in-out infinite}
+.btn-rose:hover{transform:scale(1.06)}
+.btn-rose:active{transform:scale(.93)}
+@keyframes rosePulse{0%{box-shadow:0 0 0 0 rgba(255,95,154,.6),0 14px 30px rgba(255,95,154,.4)}100%{box-shadow:0 0 0 28px rgba(255,95,154,0),0 14px 30px rgba(255,95,154,.4)}}
+@keyframes ringSpin{0%,100%{transform:rotate(-12deg) scale(1)}50%{transform:rotate(12deg) scale(1.3)}}
+
+/* note */
+.note-wrap{position:relative;margin:auto;padding-top:calc(var(--tw)*1.25 - 26px);width:min(92vw,450px)}
+.overlay.show .note-wrap{animation:boxPop 1s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes boxPop{0%{opacity:0;transform:translateY(120px) scale(.3) rotate(10deg)}60%{opacity:1}100%{opacity:1;transform:none}}
+.note-wrap.gone{animation:boxGone .6s ease-in forwards!important}
+@keyframes boxGone{to{opacity:0;transform:scale(.6) translateY(-60px)}}
+.note-teddy{position:absolute;top:0;left:0;right:0;margin:0 auto;width:var(--tw);z-index:2}
+.note-box{background:linear-gradient(160deg,#fff7f2,#ffe6ee);color:#5a1746;border:3px solid #fff;outline:2px solid var(--gold);outline-offset:-12px;border-radius:28px;padding:38px 28px 28px;box-shadow:0 26px 70px rgba(0,0,0,.55),0 0 60px rgba(255,95,154,.35);text-align:center}
+.note-title{font-family:'Satisfy',cursive;font-size:1.9rem;color:#d81b6a;line-height:1.2;margin-bottom:10px}
+.note-text{font-size:1.05rem;line-height:1.7;white-space:pre-wrap;text-align:left;min-height:5em}
+.answers{margin-top:22px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center}
+.btn-yes{padding:14px 34px;font-size:1.2rem;color:#fff;background:linear-gradient(135deg,#ff3d85,#ff7a59);box-shadow:0 7px 0 #b4174f,0 14px 26px rgba(180,23,79,.4);transform:scale(var(--ys,1));animation:yesGlow 1.6s ease-in-out infinite}
+.btn-yes:hover{filter:brightness(1.1)}
+.btn-yes:active{box-shadow:0 2px 0 #b4174f}
+@keyframes yesGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.15)}}
+.btn-no{padding:11px 22px;font-size:.95rem;color:#7a3a66;background:#fff;border:2px solid #f3c6d8;box-shadow:0 4px 12px rgba(0,0,0,.12);white-space:nowrap}
+.btn-no.run{position:fixed;z-index:500;transition:left .28s cubic-bezier(.34,1.56,.64,1),top .28s cubic-bezier(.34,1.56,.64,1)}
+
+/* celebration */
+.party-card{margin:auto;width:min(90vw,420px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.overlay.show .party-card{animation:boxPop 1.1s cubic-bezier(.34,1.56,.64,1) both}
+.party-teddy{width:min(56vw,28dvh,220px);animation:dance 1s ease-in-out infinite!important}
+@keyframes dance{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(6deg) translateY(-14px)}}
+.party-card h2{font-family:'Satisfy',cursive;font-weight:400;font-size:clamp(2.2rem,9vw,3.4rem);color:var(--gold);text-shadow:0 0 28px rgba(255,210,122,.6);line-height:1.1}
+.party-card p{font-size:1.1rem;line-height:1.6;white-space:pre-wrap;color:var(--ink)}
+.btn-soft{padding:10px 22px;font-size:.95rem;color:#fff;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.5)}
+.btn-soft:hover{background:rgba(255,255,255,.3);transform:translateY(-3px)}
+.confetti{position:fixed;top:-6%;z-index:600;pointer-events:none;animation:confFall linear forwards}
+@keyframes confFall{to{transform:translate(var(--sx,0),112dvh) rotate(var(--rot,720deg))}}

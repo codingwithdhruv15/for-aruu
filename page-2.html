@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1b1550">
+  <title>Hamari Yaadein 🌙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="page-2.css">
+</head>
+<body class="p2">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="shoot" aria-hidden="true"></div>
+  <div class="floaters" aria-hidden="true"></div>
+
+  <main class="stage">
+    <h1 class="title" id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="tb-wrap">
+      <div class="teddy sitter tb-teddy"><svg class="teddy-svg" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<ellipse cx="62" cy="230" rx="27" ry="17" fill="#b9773f"/>
+<ellipse cx="138" cy="230" rx="27" ry="17" fill="#b9773f"/>
+<ellipse cx="62" cy="232" rx="14" ry="9" fill="#f6d6b5"/>
+<ellipse cx="138" cy="232" rx="14" ry="9" fill="#f6d6b5"/>
+<ellipse cx="100" cy="188" rx="60" ry="52" fill="#c98a4b"/>
+<ellipse cx="100" cy="194" rx="37" ry="37" fill="#f6d6b5"/>
+<ellipse cx="44" cy="172" rx="16" ry="33" fill="#b9773f" transform="rotate(28 44 172)"/>
+<ellipse cx="156" cy="172" rx="16" ry="33" fill="#b9773f" transform="rotate(-28 156 172)"/>
+<g class="t-head">
+<circle cx="52" cy="48" r="27" fill="#b9773f"/><circle cx="52" cy="48" r="15" fill="#f6b8b0"/>
+<circle cx="148" cy="48" r="27" fill="#b9773f"/><circle cx="148" cy="48" r="15" fill="#f6b8b0"/>
+<circle cx="100" cy="88" r="58" fill="#c98a4b"/>
+<ellipse cx="100" cy="108" rx="28" ry="21" fill="#f6d6b5"/>
+<circle class="t-eye" cx="77" cy="82" r="6" fill="#3a2114"/><circle class="t-eye" cx="123" cy="82" r="6" fill="#3a2114"/>
+<circle cx="79" cy="80" r="2" fill="#fff"/><circle cx="125" cy="80" r="2" fill="#fff"/>
+<circle cx="64" cy="102" r="9" fill="#ff8fa3" opacity=".55"/><circle cx="136" cy="102" r="9" fill="#ff8fa3" opacity=".55"/>
+<ellipse cx="100" cy="99" rx="9" ry="6.5" fill="#3a2114"/>
+<path d="M100 105 V111 M100 111 Q92 121 83 113 M100 111 Q108 121 117 113" stroke="#3a2114" stroke-width="3" fill="none" stroke-linecap="round"/>
+</g>
+<path d="M100 148 L74 134 Q68 148 74 162 Z" fill="#ff5c8a"/>
+<path d="M100 148 L126 134 Q132 148 126 162 Z" fill="#ff5c8a"/>
+<circle cx="100" cy="148" r="7" fill="#e0345f"/>
+</svg></div>
+      <button class="btn big-btn" id="startBtn"><span class="shine"></span>✨ <span id="startLabel"></span></button>
+    </div>
+  </main>
+
+  <!-- NOTE BOX -->
+  <div class="overlay" id="noteOverlay">
+    <div class="note-wrap">
+      <div class="note-box" id="noteBox">
+        <div class="note-title" id="noteTitle"></div>
+        <p class="note-text" id="noteText"></p>
+        <div class="wait" id="noteWait"><div class="bar"><i></i></div><small id="noteHint"></small></div>
+        <div class="slot hidden" id="noteSlot">
+          <button class="btn big-btn" id="noteNext"><span class="shine"></span><span id="noteNextLabel"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTOS + VIDEOS BOX -->
+  <div class="overlay" id="galOverlay">
+    <section class="gal-box" id="galBox">
+      <header>
+        <h2 id="galTitle"></h2>
+        <p id="galSub"></p>
+      </header>
+      <div class="grid" id="grid"></div>
+      <footer>
+        <div class="wait" id="galWait"><div class="bar"><i></i></div><small id="galHint"></small></div>
+        <div class="slot hidden" id="galSlot">
+          <button class="btn big-btn" id="galNext"><span class="shine"></span><span id="galNextLabel"></span></button>
+        </div>
+      </footer>
+    </section>
+  </div>
+
+  <!-- FULLSCREEN VIEWER -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+    <div class="lb-content" id="lbContent"></div>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next">›</button>
+    <p class="lb-cap" id="lbCap"></p>
+  </div>
+
+  <script src="page-2.js"></script>
+</body>
+</html>
